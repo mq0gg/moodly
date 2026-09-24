@@ -1,0 +1,71 @@
+{
+  "kind": "collectionType",
+  "collectionName": "recipes",
+  "info": {
+    "singularName": "recipe",
+    "pluralName": "recipes",
+    "displayName": "Recipe",
+    "description": "A coffee recipe, own or imported. FR-01 to FR-04."
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
+      "required": true
+    },
+    "summary": {
+      "type": "text",
+      "maxLength": 240
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    },
+    "ingredients": {
+      "type": "component",
+      "component": "recipe.ingredient",
+      "repeatable": true
+    },
+    "steps": {
+      "type": "component",
+      "component": "recipe.step",
+      "repeatable": true
+    },
+    "prepMinutes": {
+      "type": "integer",
+      "min": 0
+    },
+    "servings": {
+      "type": "integer",
+      "default": 1,
+      "min": 1
+    },
+    "tags": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::tag.tag",
+      "inversedBy": "recipes"
+    },
+    "source": {
+      "type": "enumeration",
+      "enum": ["original", "external_api", "community"],
+      "default": "original",
+      "required": true
+    },
+    "externalId": {
+      "type": "string",
+      "unique": true
+    },
+    "attribution": {
+      "type": "string"
+    }
+  }
+}

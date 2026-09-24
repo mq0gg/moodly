@@ -1,0 +1,24 @@
+# Secrets — never commit (NFR-07)
+.env
+.env.*
+!.env.example
+
+# Dependencies
+node_modules/
+
+# Strapi
+backend/.cache/
+backend/.tmp/
+backend/build/
+backend/dist/
+backend/.strapi/
+
+# Uploads (local dev only — media lives in the DB/host in real environments)
+backend/public/uploads/*
+!backend/public/uploads/.gitkeep
+
+# OS / editor
+.DS_Store
+*.log
+.vscode/
+.idea/

@@ -1,0 +1,42 @@
+{
+  "kind": "collectionType",
+  "collectionName": "recipe_suggestions",
+  "info": {
+    "singularName": "recipe-suggestion",
+    "pluralName": "recipe-suggestions",
+    "displayName": "Recipe Suggestion",
+    "description": "A recipe a visitor submitted, no login. Public create-only; status forced server-side. ADR-006, FR-11, FR-12."
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "ingredients": {
+      "type": "text",
+      "required": true
+    },
+    "steps": {
+      "type": "text",
+      "required": true
+    },
+    "notes": {
+      "type": "text"
+    },
+    "name": {
+      "type": "string"
+    },
+    "email": {
+      "type": "email"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": ["new", "reviewed", "accepted", "rejected"],
+      "default": "new",
+      "required": true
+    }
+  }
+}

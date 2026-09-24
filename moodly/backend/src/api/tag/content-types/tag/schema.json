@@ -1,0 +1,51 @@
+{
+  "kind": "collectionType",
+  "collectionName": "tags",
+  "info": {
+    "singularName": "tag",
+    "pluralName": "tags",
+    "displayName": "Tag",
+    "description": "One value in a matching dimension (mood, flavor, caffeine, temperature, time, difficulty). ADR-001."
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "label": {
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "label",
+      "required": true
+    },
+    "dimension": {
+      "type": "enumeration",
+      "enum": ["mood", "flavor", "caffeine", "temperature", "time", "difficulty"],
+      "required": true
+    },
+    "reasonPhrase": {
+      "type": "string",
+      "required": true,
+      "maxLength": 60
+    },
+    "weight": {
+      "type": "decimal",
+      "default": 1,
+      "required": true
+    },
+    "recipes": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::recipe.recipe",
+      "mappedBy": "tags"
+    },
+    "answers": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::answer.answer",
+      "mappedBy": "tags"
+    }
+  }
+}
