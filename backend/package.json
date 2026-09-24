@@ -2,7 +2,7 @@
   "name": "moodly-backend",
   "private": true,
   "version": "0.1.0",
-  "description": "Moodly Strapi backend — content model, SipSense matching API",
+  "description": "Moodly Strapi backend \u2014 content model, SipSense matching API",
   "scripts": {
     "develop": "strapi develop",
     "start": "strapi start",
@@ -14,9 +14,9 @@
     "seed": "ts-node scripts/seed.ts"
   },
   "dependencies": {
-    "@strapi/plugin-cloud": "5.10.0",
-    "@strapi/plugin-users-permissions": "5.10.0",
-    "@strapi/strapi": "5.10.0",
+    "@strapi/plugin-cloud": "5.55.1",
+    "@strapi/plugin-users-permissions": "5.55.1",
+    "@strapi/strapi": "5.55.1",
     "pg": "8.13.1"
   },
   "devDependencies": {
