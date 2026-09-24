@@ -8,7 +8,7 @@
  * Run inside the backend container/environment:
  *   npm run seed
  */
-import strapiFactory from '@strapi/strapi';
+import { createStrapi } from '@strapi/strapi';
 
 type TagSeed = {
   label: string;
@@ -179,7 +179,7 @@ const RECIPES: {
 ];
 
 async function seed() {
-  const strapi = await strapiFactory().load();
+  const strapi = await createStrapi().load();
 
   // --- Tags ---
   const tagIdBySlug: Record<string, number> = {};
