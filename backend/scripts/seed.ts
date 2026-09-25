@@ -8,7 +8,7 @@
  * Run inside the backend container/environment:
  *   npm run seed
  */
-import { createStrapi } from '@strapi/strapi';
+import { createStrapi, compileStrapi } from '@strapi/strapi';
 
 type TagSeed = {
   label: string;
@@ -18,27 +18,21 @@ type TagSeed = {
 };
 
 const TAGS: TagSeed[] = [
-  // mood
   { label: 'Cozy', slug: 'mood-cozy', dimension: 'mood', reasonPhrase: 'cozy and comforting' },
   { label: 'Energized', slug: 'mood-energized', dimension: 'mood', reasonPhrase: 'a real pick-me-up' },
   { label: 'Adventurous', slug: 'mood-adventurous', dimension: 'mood', reasonPhrase: 'a little different' },
   { label: 'Relaxed', slug: 'mood-relaxed', dimension: 'mood', reasonPhrase: 'easygoing and smooth' },
-  // flavor
   { label: 'Sweet', slug: 'flavor-sweet', dimension: 'flavor', reasonPhrase: 'sweet' },
   { label: 'Bitter', slug: 'flavor-bitter', dimension: 'flavor', reasonPhrase: 'bold and bitter' },
   { label: 'Fruity', slug: 'flavor-fruity', dimension: 'flavor', reasonPhrase: 'fruity' },
   { label: 'Nutty', slug: 'flavor-nutty', dimension: 'flavor', reasonPhrase: 'warm and nutty' },
-  // caffeine
   { label: 'High Caffeine', slug: 'caffeine-high', dimension: 'caffeine', reasonPhrase: 'a strong caffeine kick' },
   { label: 'Low Caffeine', slug: 'caffeine-low', dimension: 'caffeine', reasonPhrase: 'easy on the caffeine' },
   { label: 'Decaf', slug: 'caffeine-decaf', dimension: 'caffeine', reasonPhrase: 'caffeine-free' },
-  // temperature
   { label: 'Hot', slug: 'temp-hot', dimension: 'temperature', reasonPhrase: 'hot' },
   { label: 'Iced', slug: 'temp-iced', dimension: 'temperature', reasonPhrase: 'iced' },
-  // time
   { label: 'Quick', slug: 'time-quick', dimension: 'time', reasonPhrase: 'quick to make' },
   { label: 'Leisurely', slug: 'time-leisurely', dimension: 'time', reasonPhrase: 'worth taking your time on' },
-  // difficulty
   { label: 'Easy', slug: 'difficulty-easy', dimension: 'difficulty', reasonPhrase: 'simple to make' },
   { label: 'Involved', slug: 'difficulty-involved', dimension: 'difficulty', reasonPhrase: 'a fun little project' },
 ];
@@ -178,10 +172,18 @@ const RECIPES: {
   },
 ];
 
-async function seed() {
-  const strapi = await createStrapi().load();
+function slugify(title: string): string {
+  return title
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)/g, '');
+}
 
-  // --- Tags ---
+async function seed() {
+  const { appDir, distDir } = await compileStrapi();
+  const strapi = await createStrapi({ appDir, distDir }).load();
+
   const tagIdBySlug: Record<string, number> = {};
   for (const t of TAGS) {
     const existing = await strapi.db.query('api::tag.tag').findOne({ where: { slug: t.slug } });
@@ -194,7 +196,6 @@ async function seed() {
   }
   strapi.log.info(`Seeded ${TAGS.length} tags`);
 
-  // --- Questions + Answers ---
   for (const q of QUESTIONS) {
     let question = await strapi.db.query('api::question.question').findOne({ where: { order: q.order } });
     if (!question) {
@@ -221,18 +222,23 @@ async function seed() {
   }
   strapi.log.info(`Seeded ${QUESTIONS.length} questions`);
 
-  // --- Recipes ---
   for (const r of RECIPES) {
     const existing = await strapi.db.query('api::recipe.recipe').findOne({ where: { title: r.title } });
     if (!existing) {
       await strapi.entityService.create('api::recipe.recipe', {
         data: {
           title: r.title,
+          slug: slugify(r.title),
           summary: r.summary,
           prepMinutes: r.prepMinutes,
           servings: r.servings,
           source: 'original',
-          tags: r.tagSlugs.map((s) => tagIdBySlug[s]),
+          // Strapi's generated type for Recipe.tags incorrectly infers a
+          // to-one relation (likely confused by Tag having two separate
+          // relations — recipes and answers — that both invert via a field
+          // literally named "tags"). Schema is correctly manyToMany; this
+          // array is the right runtime shape, matching Answer.tags above.
+          tags: r.tagSlugs.map((s) => tagIdBySlug[s]) as unknown as number,
           ingredients: r.ingredients,
           steps: r.steps.map((instruction) => ({ instruction })),
           publishedAt: new Date(),
