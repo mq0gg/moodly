@@ -18,21 +18,27 @@ type TagSeed = {
 };
 
 const TAGS: TagSeed[] = [
+  // mood
   { label: 'Cozy', slug: 'mood-cozy', dimension: 'mood', reasonPhrase: 'cozy and comforting' },
   { label: 'Energized', slug: 'mood-energized', dimension: 'mood', reasonPhrase: 'a real pick-me-up' },
   { label: 'Adventurous', slug: 'mood-adventurous', dimension: 'mood', reasonPhrase: 'a little different' },
   { label: 'Relaxed', slug: 'mood-relaxed', dimension: 'mood', reasonPhrase: 'easygoing and smooth' },
+  // flavor
   { label: 'Sweet', slug: 'flavor-sweet', dimension: 'flavor', reasonPhrase: 'sweet' },
   { label: 'Bitter', slug: 'flavor-bitter', dimension: 'flavor', reasonPhrase: 'bold and bitter' },
   { label: 'Fruity', slug: 'flavor-fruity', dimension: 'flavor', reasonPhrase: 'fruity' },
   { label: 'Nutty', slug: 'flavor-nutty', dimension: 'flavor', reasonPhrase: 'warm and nutty' },
+  // caffeine
   { label: 'High Caffeine', slug: 'caffeine-high', dimension: 'caffeine', reasonPhrase: 'a strong caffeine kick' },
   { label: 'Low Caffeine', slug: 'caffeine-low', dimension: 'caffeine', reasonPhrase: 'easy on the caffeine' },
   { label: 'Decaf', slug: 'caffeine-decaf', dimension: 'caffeine', reasonPhrase: 'caffeine-free' },
+  // temperature
   { label: 'Hot', slug: 'temp-hot', dimension: 'temperature', reasonPhrase: 'hot' },
   { label: 'Iced', slug: 'temp-iced', dimension: 'temperature', reasonPhrase: 'iced' },
+  // time
   { label: 'Quick', slug: 'time-quick', dimension: 'time', reasonPhrase: 'quick to make' },
   { label: 'Leisurely', slug: 'time-leisurely', dimension: 'time', reasonPhrase: 'worth taking your time on' },
+  // difficulty
   { label: 'Easy', slug: 'difficulty-easy', dimension: 'difficulty', reasonPhrase: 'simple to make' },
   { label: 'Involved', slug: 'difficulty-involved', dimension: 'difficulty', reasonPhrase: 'a fun little project' },
 ];
@@ -170,6 +176,145 @@ const RECIPES: {
     ],
     steps: ['Steam the almond milk with the syrup.', 'Pour over decaf espresso.'],
   },
+  {
+    title: 'Classic Matcha Latte',
+    summary: 'Whisked matcha with steamed milk — earthy, smooth, gently energizing.',
+    prepMinutes: 5,
+    servings: 1,
+    tagSlugs: ['temp-hot', 'flavor-nutty', 'caffeine-low', 'time-quick', 'difficulty-easy', 'mood-relaxed'],
+    ingredients: [
+      { name: 'matcha powder', amount: 1, unit: 'tsp' },
+      { name: 'hot water', amount: 2, unit: 'fl_oz' },
+      { name: 'milk', amount: 6, unit: 'fl_oz' },
+    ],
+    steps: ['Whisk matcha with hot water until frothy.', 'Steam the milk.', 'Pour milk over the matcha.'],
+  },
+  {
+    title: 'Iced Coconut Matcha',
+    summary: 'Matcha over ice with coconut milk for a light, tropical twist.',
+    prepMinutes: 5,
+    servings: 1,
+    tagSlugs: ['temp-iced', 'flavor-sweet', 'caffeine-low', 'time-quick', 'difficulty-easy', 'mood-relaxed', 'mood-adventurous'],
+    ingredients: [
+      { name: 'matcha powder', amount: 1, unit: 'tsp' },
+      { name: 'hot water', amount: 2, unit: 'fl_oz' },
+      { name: 'coconut milk', amount: 6, unit: 'fl_oz' },
+      { name: 'ice', amount: 1, unit: 'cup' },
+    ],
+    steps: ['Whisk matcha with hot water until smooth.', 'Fill a glass with ice and coconut milk.', 'Pour the matcha over the top.'],
+  },
+  {
+    title: 'Strawberry Mint Cooler',
+    summary: 'A bright, fresh halal mocktail — muddled strawberry and mint over ice.',
+    prepMinutes: 5,
+    servings: 1,
+    tagSlugs: ['temp-iced', 'flavor-fruity', 'caffeine-decaf', 'time-quick', 'difficulty-easy', 'mood-energized', 'mood-adventurous'],
+    ingredients: [
+      { name: 'strawberries', amount: 4 },
+      { name: 'mint leaves', amount: 6 },
+      { name: 'sparkling water', amount: 8, unit: 'fl_oz' },
+      { name: 'ice', amount: 1, unit: 'cup' },
+    ],
+    steps: ['Muddle strawberries and mint in a glass.', 'Fill with ice.', 'Top with sparkling water, stir gently.'],
+  },
+  {
+    title: 'Pomegranate Rose Spritz',
+    summary: 'A fresh halal mocktail with pomegranate and a hint of rose water.',
+    prepMinutes: 5,
+    servings: 1,
+    tagSlugs: ['temp-iced', 'flavor-fruity', 'flavor-sweet', 'caffeine-decaf', 'time-quick', 'difficulty-easy', 'mood-adventurous'],
+    ingredients: [
+      { name: 'pomegranate juice', amount: 4, unit: 'fl_oz' },
+      { name: 'rose water', amount: 1, unit: 'tsp' },
+      { name: 'sparkling water', amount: 4, unit: 'fl_oz' },
+      { name: 'ice', amount: 1, unit: 'cup' },
+    ],
+    steps: ['Fill a glass with ice.', 'Pour in pomegranate juice and rose water.', 'Top with sparkling water, stir gently.'],
+  },
+  {
+    title: 'Watermelon Basil Cooler',
+    summary: 'Fresh watermelon juice with a savory basil note — light and quick.',
+    prepMinutes: 5,
+    servings: 1,
+    tagSlugs: ['temp-iced', 'flavor-fruity', 'caffeine-decaf', 'time-quick', 'difficulty-easy', 'mood-energized'],
+    ingredients: [
+      { name: 'watermelon juice', amount: 8, unit: 'fl_oz' },
+      { name: 'basil leaves', amount: 3 },
+      { name: 'ice', amount: 1, unit: 'cup' },
+    ],
+    steps: ['Muddle basil lightly in a glass.', 'Fill with ice.', 'Pour in watermelon juice, stir gently.'],
+  },
+  {
+    title: 'Ginger Turmeric Tonic',
+    summary: 'A bold, spiced tonic with fresh ginger and turmeric — a real wake-up call.',
+    prepMinutes: 8,
+    servings: 1,
+    tagSlugs: ['temp-hot', 'flavor-bitter', 'caffeine-decaf', 'time-leisurely', 'difficulty-involved', 'mood-energized'],
+    ingredients: [
+      { name: 'fresh ginger', amount: 1, unit: 'tbsp', note: 'grated' },
+      { name: 'ground turmeric', amount: 1, unit: 'tsp' },
+      { name: 'hot water', amount: 8, unit: 'fl_oz' },
+      { name: 'honey', amount: 1, unit: 'tbsp' },
+    ],
+    steps: ['Steep ginger and turmeric in hot water for 5 minutes.', 'Strain.', 'Stir in honey.'],
+  },
+  {
+    title: 'Honey Lavender Steamer',
+    summary: 'Steamed milk with honey and a whisper of lavender — no caffeine, all cozy.',
+    prepMinutes: 6,
+    servings: 1,
+    tagSlugs: ['temp-hot', 'flavor-sweet', 'caffeine-decaf', 'time-leisurely', 'difficulty-easy', 'mood-cozy', 'mood-relaxed'],
+    ingredients: [
+      { name: 'milk', amount: 8, unit: 'fl_oz' },
+      { name: 'honey', amount: 1, unit: 'tbsp' },
+      { name: 'dried lavender', amount: 1, unit: 'pinch' },
+    ],
+    steps: ['Steep lavender in warm milk for 2 minutes, then strain.', 'Steam the milk.', 'Stir in honey.'],
+  },
+  {
+    title: 'Golden Turmeric Milk',
+    summary: 'A warm, spiced golden milk — sweet, nutty, and completely caffeine-free.',
+    prepMinutes: 7,
+    servings: 1,
+    tagSlugs: ['temp-hot', 'flavor-sweet', 'flavor-nutty', 'caffeine-decaf', 'time-leisurely', 'difficulty-easy', 'mood-cozy'],
+    ingredients: [
+      { name: 'milk', amount: 8, unit: 'fl_oz' },
+      { name: 'ground turmeric', amount: 1, unit: 'tsp' },
+      { name: 'ground cinnamon', amount: 1, unit: 'pinch' },
+      { name: 'honey', amount: 1, unit: 'tbsp' },
+    ],
+    steps: ['Warm the milk with turmeric and cinnamon, whisking gently.', 'Stir in honey before serving.'],
+  },
+  {
+    title: 'Mango Lassi',
+    summary: 'A halal yogurt-based mango drink — thick, sweet, and refreshing.',
+    prepMinutes: 5,
+    servings: 1,
+    tagSlugs: ['temp-iced', 'flavor-sweet', 'flavor-fruity', 'caffeine-decaf', 'time-quick', 'difficulty-easy', 'mood-relaxed'],
+    ingredients: [
+      { name: 'mango', amount: 1, unit: 'cup', note: 'chopped' },
+      { name: 'plain yogurt', amount: 4, unit: 'fl_oz' },
+      { name: 'milk', amount: 2, unit: 'fl_oz' },
+      { name: 'honey', amount: 1, unit: 'tbsp' },
+    ],
+    steps: ['Blend mango, yogurt, milk, and honey until smooth.', 'Pour over ice.'],
+  },
+  {
+    title: 'Rose Cardamom Chai',
+    summary: 'A fragrant spiced tea with cardamom and rose — worth taking your time on.',
+    prepMinutes: 10,
+    servings: 1,
+    tagSlugs: ['temp-hot', 'flavor-sweet', 'flavor-nutty', 'caffeine-low', 'time-leisurely', 'difficulty-involved', 'mood-cozy'],
+    ingredients: [
+      { name: 'black tea leaves', amount: 1, unit: 'tsp' },
+      { name: 'milk', amount: 4, unit: 'fl_oz' },
+      { name: 'water', amount: 4, unit: 'fl_oz' },
+      { name: 'ground cardamom', amount: 1, unit: 'pinch' },
+      { name: 'rose water', amount: 1, unit: 'tsp' },
+      { name: 'honey', amount: 1, unit: 'tbsp' },
+    ],
+    steps: ['Simmer tea, water, and cardamom for 3 minutes.', 'Add milk and simmer 2 more minutes.', 'Strain, stir in rose water and honey.'],
+  },
 ];
 
 function slugify(title: string): string {
@@ -181,9 +326,14 @@ function slugify(title: string): string {
 }
 
 async function seed() {
+  // Standalone TS scripts (run outside `strapi develop`/`strapi start`) must
+  // compile config/*.ts and src/**/*.ts to dist/ themselves first — Strapi's
+  // config loader only reads .js/.json, so createStrapi() alone can't see
+  // this project's TypeScript config files.
   const { appDir, distDir } = await compileStrapi();
   const strapi = await createStrapi({ appDir, distDir }).load();
 
+  // --- Tags ---
   const tagIdBySlug: Record<string, number> = {};
   for (const t of TAGS) {
     const existing = await strapi.db.query('api::tag.tag').findOne({ where: { slug: t.slug } });
@@ -196,6 +346,7 @@ async function seed() {
   }
   strapi.log.info(`Seeded ${TAGS.length} tags`);
 
+  // --- Questions + Answers ---
   for (const q of QUESTIONS) {
     let question = await strapi.db.query('api::question.question').findOne({ where: { order: q.order } });
     if (!question) {
@@ -222,6 +373,7 @@ async function seed() {
   }
   strapi.log.info(`Seeded ${QUESTIONS.length} questions`);
 
+  // --- Recipes ---
   for (const r of RECIPES) {
     const existing = await strapi.db.query('api::recipe.recipe').findOne({ where: { title: r.title } });
     if (!existing) {

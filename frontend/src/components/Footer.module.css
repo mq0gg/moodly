@@ -1,0 +1,33 @@
+.footer {
+  background: var(--color-ink);
+  color: var(--color-bg);
+  padding: var(--space-4);
+  text-align: center;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+
+.brand {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: var(--space-1);
+}
+
+.tagline {
+  opacity: 0.75;
+  font-size: 0.9rem;
+  margin-bottom: var(--space-3);
+}
+
+.links {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-2);
+  font-size: 0.85rem;
+}
+
+.links a {
+  color: var(--color-bg);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
