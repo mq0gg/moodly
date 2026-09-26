@@ -1,0 +1,93 @@
+/* Moodly design tokens — PRD §6 palette, breezy & minimal direction.
+   Usable any time of year: no seasonal framing, no illustrated imagery.
+   Decoration is limited to striped accent bars (see StripeAccent.tsx),
+   placed at the top or right edge of a section — never as content imagery. */
+
+:root {
+  /* Palette */
+  --color-primary: #d2c0ea; /* Lavender — main actions, top result */
+  --color-secondary: #83c5d5; /* Turquoise — links, cool/iced cues */
+  --color-energy: #ed9651; /* Tangerine — progress, warm cues, hover */
+  --color-accent: #e6688d; /* Hot Pink — small accents, chips */
+  --color-fresh: #cbe6c7; /* Mint — success, approved, fresh drinks */
+  --color-bg: #fbf4ea; /* Coconut White — page background */
+  --color-ink: #0e1e40; /* Navy — all text, outlines */
+  --color-surface: #ffffff;
+
+  /* Type */
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* Spacing scale — generous, breezy */
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2.5rem;
+  --space-5: 4rem;
+  --space-6: 6rem;
+
+  /* Shape */
+  --radius-sm: 12px;
+  --radius-md: 20px;
+  --radius-lg: 28px;
+
+  /* Motion — gentle only */
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --duration: 200ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration: 0ms;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.15;
+  margin: 0 0 var(--space-2);
+}
+
+p {
+  margin: 0 0 var(--space-2);
+}
+
+a {
+  color: var(--color-ink);
+}
+
+button {
+  font-family: inherit;
+}
+
+/* Focus states — always visible, per NFR-02 */
+:focus-visible {
+  outline: 3px solid var(--color-ink);
+  outline-offset: 2px;
+}

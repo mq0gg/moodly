@@ -1,0 +1,27 @@
+.top {
+  display: flex;
+  width: 100%;
+  height: 6px;
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  overflow: hidden;
+}
+
+.top span {
+  flex: 1;
+}
+
+.right {
+  display: flex;
+  flex-direction: column;
+  width: 6px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  overflow: hidden;
+}
+
+.right span {
+  flex: 1;
+}
