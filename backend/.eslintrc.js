@@ -12,8 +12,8 @@ module.exports = {
     ecmaVersion: 2022,
     sourceType: 'module',
   },
-  ignorePatterns: ['dist/', 'build/', 'node_modules/', '.cache/', '.tmp/'],
-  rules: {
+  ignorePatterns: ['dist/', 'build/', 'node_modules/', '.cache/', '.tmp/', 'types/generated/'],
+    rules: {
     '@typescript-eslint/no-explicit-any': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
   },
